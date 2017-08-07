@@ -1,5 +1,7 @@
 package com.guestbook.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,14 @@ public class GuestBookController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(@ModelAttribute GuestBookVo vo ) {
+		vo.setContent(vo.getContent().replace("\r\n", "<br/>"));
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = sdf.format(cal.getTime());
+		
+		vo.setDate(date);
+		
 		dao.insert(vo);
 		return "redirect:/";
 	}

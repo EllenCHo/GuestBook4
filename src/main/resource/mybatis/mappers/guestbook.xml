@@ -14,5 +14,14 @@
 			order by no desc
 		]]>
 	</select>
+	
+	<!-- 방명록 추가 -->
+	<insert id="insert" parameterType="GuestBookVo">
+		<![CDATA[
+			insert into guestbook
+			values(seq_guestbook_no.nextval, #{name}, #{pw}, #{content}, TO_DATE(#{date},'YYYY-MM-DD hh24:mi:ss'))
+		]]>
+	</insert>
+
 
 </mapper>

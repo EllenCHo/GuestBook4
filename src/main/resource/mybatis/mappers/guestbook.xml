@@ -9,7 +9,7 @@
 	<!-- 전체 리스트 가져오기 -->
 	<select id="getList" resultMap="resultMapList">
 		<![CDATA[
-			select no, name, password, content, reg_date 
+			select no, name, password, content, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') reg_date
 			from guestbook
 			order by no desc
 		]]>
